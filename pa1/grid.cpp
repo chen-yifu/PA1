@@ -10,6 +10,8 @@
  */
 Grid::~Grid(){ /*your code here*/
 
+    clear();
+
 }
 
 /**
@@ -41,7 +43,19 @@ void Grid::rotateC(int c, int count) { /* your code here */
  */
 void Grid::clear() { /*your code here*/
 
+    std::function void deleteNext = [](Node current) {
+        if (current->*down != NULL) {
+            deleteNext(current->*down);
+        }
+        delete current;
+    }
+
+    for (int i = 0; i < numCols(); i++) {
+        Node temp = headOfCol_[i];
+        deleteNext(temp);
+    }
 }
+
 
 
 /**

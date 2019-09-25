@@ -1,5 +1,5 @@
 #include "block.h"
-#include "HSLAPixel.h"
+// #include "HSLAPixel.h"
 
 /**
  * Returns the width of the block.
@@ -26,11 +26,14 @@ Block::Block() {/* nothing */}
  * whose upper-left corner is at position (x,y).
  */
 Block::Block(PNG & im, int x, int y, int width, int height) {/*your code here*/
-    HSLAPixel def;
+    HSLAPixel:HSLAPixel def;
     std::vector<vector<HSLAPixel>> data(height, vector<HSLAPixel>(width,def))
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++ ) {
-            data[i][j] = im.getPixel(x+j,y+i);
+            data[i][j].h = im.getPixel(x+j,y+i)->h;
+            data[i][j].s = im.getPixel(x+j,y+i)->s;
+            data[i][j].l = im.getPixel(x+j,y+i)->l;
+            data[i][j].a = im.getPixel(x+j,y+i)->a;
         }
     }
 }
@@ -39,8 +42,8 @@ Block::Block(PNG & im, int x, int y, int width, int height) {/*your code here*/
  * Draws the block at position (x,y) in the image im
  */
 void Block::render(PNG & im, int x, int y) const {/*your code here*/
-    for (int i = 0; i < height(); j++) {
-        for (int j = 0; j < width(); i++ ) {
+    for (int i = 0; i < height(); i++) {
+        for (int j = 0; j < width(); j++ ) {
             im.getPixel(x+j,y+i)->h = data[i][j].h;
             im.getPixel(x+j,y+i)->s = data[i][j].s;
             im.getPixel(x+j,y+i)->l = data[i][j].l;
@@ -55,8 +58,8 @@ void Block::render(PNG & im, int x, int y) const {/*your code here*/
  */
 void Block::greyscale() {/*your code here*/
 
-    for (int i = 0; i < height(); j++) {
-        for (int j = 0; j < width(); i++ ) {
+    for (int i = 0; i < height(); i++) {
+        for (int j = 0; j < width(); j++ ) {
             data[i][j].s = 0;
         }
     }

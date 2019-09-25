@@ -336,12 +336,8 @@ static void lodepng_set32bitInt(unsigned char* buffer, unsigned value)
 #ifdef LODEPNG_COMPILE_ENCODER
 static void lodepng_add32bitInt(ucvector* buffer, unsigned value)
 {
-    if (0 == ucvector_resize(buffer, buffer->size + 4)) {
-        std::cerr << "resize failed: line" << __LINE__ << std::endl;
-    }
-
     ucvector_resize(buffer, buffer->size + 4); /*todo: give error if resize failed*/
-  lodepng_set32bitInt(&buffer->data[buffer->size - 4], value);
+    lodepng_set32bitInt(&buffer->data[buffer->size - 4], value);
 }
 #endif /*LODEPNG_COMPILE_ENCODER*/
 
