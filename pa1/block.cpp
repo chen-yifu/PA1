@@ -1,5 +1,5 @@
 #include "block.h"
-#include "HSLAPixel.h"
+
 
 /**
  * Returns the width of the block.
@@ -26,8 +26,8 @@ Block::Block() {/* nothing */}
  * whose upper-left corner is at position (x,y).
  */
 Block::Block(PNG & im, int x, int y, int width, int height) {/*your code here*/
-    for (int i = 0; i < height; j++) {
-        for (int j = 0; j < width; i++ ) {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++ ) {
             data[i][j] = im.getPixel(x+j,y+i);
         }
     }
@@ -37,7 +37,14 @@ Block::Block(PNG & im, int x, int y, int width, int height) {/*your code here*/
  * Draws the block at position (x,y) in the image im
  */
 void Block::render(PNG & im, int x, int y) const {/*your code here*/
-
+    for (int i = 0; i < height(); j++) {
+        for (int j = 0; j < width(); i++ ) {
+            im.getPixel(x+j,y+i)->h = data[i][j].h;
+            im.getPixel(x+j,y+i)->s = data[i][j].s;
+            im.getPixel(x+j,y+i)->l = data[i][j].l;
+            im.getPixel(x+j,y+i)->a = data[i][j].a;
+        }
+    }
 }
 
 /**
@@ -45,9 +52,10 @@ void Block::render(PNG & im, int x, int y) const {/*your code here*/
  * which removes the color, leaving grey.
  */
 void Block::greyscale() {/*your code here*/
-    for (int i = 0; i < data.size(); i++) {
-        for (int j = 0; j < data[0].size(); j++) {
+    for (int i = 0; i < height(); j++) {
+        for (int j = 0; j < width(); i++ ) {
             data[i][j].s = 0;
         }
     }
 }
+
