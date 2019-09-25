@@ -1,5 +1,5 @@
 #include "block.h"
-
+#include "HSLAPixel.h"
 
 /**
  * Returns the width of the block.
@@ -26,6 +26,8 @@ Block::Block() {/* nothing */}
  * whose upper-left corner is at position (x,y).
  */
 Block::Block(PNG & im, int x, int y, int width, int height) {/*your code here*/
+    HSLAPixel def;
+    std::vector<vector<HSLAPixel>> data(height, vector<HSLAPixel>(width,def))
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++ ) {
             data[i][j] = im.getPixel(x+j,y+i);
@@ -52,6 +54,7 @@ void Block::render(PNG & im, int x, int y) const {/*your code here*/
  * which removes the color, leaving grey.
  */
 void Block::greyscale() {/*your code here*/
+
     for (int i = 0; i < height(); j++) {
         for (int j = 0; j < width(); i++ ) {
             data[i][j].s = 0;
