@@ -21,7 +21,7 @@
      * Rotate headOfCol_ if necessary.
      */
     void Grid::rotateR(int r, int count) { /* your code here */
-
+        
     }
 
     /**
@@ -86,4 +86,5 @@
             if (direction == "right") {
                 return getNthNode(direction, steps - 1, current->right);
             }
+
     }
