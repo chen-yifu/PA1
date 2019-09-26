@@ -182,6 +182,12 @@ private:
     */
    void copy(const Grid & other);
 
+   /*
+    * A helper function for retrieving the nth node according to direction
+    */
+
+   Node * getNthNode(string direction, int steps, const Node * current);
+
    /* =================== end of private PA1 functions ============== */
 };
 
