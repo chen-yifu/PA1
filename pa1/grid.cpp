@@ -8,10 +8,35 @@
      * Destroys the current Grid. This function should ensure that
      * memory does not leak on destruction of a grid.
      */
-    Grid::~Grid(){ /*your code here*/
-
-        clear();
-
+    Grid::~Grid(){
+        for (auto x: headOfCol_) {
+            Node* n = x;
+            x = NULL;
+            Node* nPlusOne = n->down;
+            n->down = NULL;
+            nPlusOne->up = NULL;
+            while (nPlusOne -> down != nullptr) {
+                n = nPlusOne;
+                nPlusOne = n->down;
+                n->down = NULL;
+                nPlusOne->up = NULL;
+            }                     
+        } 
+        for (auto x: headOfRow_) {
+            Node* n = x;
+            x = NULL;
+            Node* nPlusOne = n->right;
+            delete n;
+            n->right = NULL;
+            nPlusOne->left = NULL;
+            while (nPlusOne -> right != nullptr) {
+                n = nPlusOne;
+                nPlusOne = n->right;
+                delete n;
+                n->right = NULL;
+                nPlusOne->left = NULL;
+            }
+        }  
     }
 
     /**
@@ -20,7 +45,7 @@
      * in grid g should be DEABC after the call g.rotateR(r, 2).
      * Rotate headOfCol_ if necessary.
      */
-    void Grid::rotateR(int r, int count) { /* your code here */
+    void Grid::rotateR(int r, int count) { 
         
     }
 
@@ -68,7 +93,7 @@
     void Grid::copy(Grid const& other) { /*your code here*/
 
     }
-
+    Grid * newGrid = new Grid(*other->render(),other->bheight_, other->bwidth_)
 
     Node * getNthNode(string direction, int steps, const Node * current) {
             if (steps == 0) {
