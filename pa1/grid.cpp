@@ -9,7 +9,7 @@
      * memory does not leak on destruction of a grid.
      */
     Grid::~Grid(){
-        for (auto x: headOfCol_) {
+        for (Node* x: headOfCol_) {
             Node* n = x;
             x = NULL;
             Node* nPlusOne = n->down;
@@ -22,7 +22,7 @@
                 nPlusOne->up = NULL;
             }                     
         } 
-        for (auto x: headOfRow_) {
+        for (Node* x: headOfRow_) {
             Node* n = x;
             x = NULL;
             Node* nPlusOne = n->right;
@@ -46,7 +46,45 @@
      * Rotate headOfCol_ if necessary.
      */
     void Grid::rotateR(int r, int count) { 
-        
+        r = r % numRows();
+        if (r == 0) {
+            for (Node* x: headOfCol_) {
+                Node* correct = x;
+                for (int i=0; i < count; i++) {
+                    correct = correct->left;
+                } 
+                x = correct;       
+            }
+        }
+        Node* curr = headOfCol_.at(r);
+        Node* currdown;
+        Node* currup;
+        for (int i=0; i < numCols(); i++) {
+            // for the upper pointers
+            currdown = curr->down;
+            for (int i=0; i < count; i++) {
+                currdown = currdown->right;
+            }
+            curr->down = currdown;
+            currdown->up = curr;
+
+            // for the below pointers
+            currup = curr->up;
+            for (int i=0; i < count; i++) {
+                currdown = currdown->right;
+            }
+            curr->up = currup;
+            currup->down = curr;
+
+            curr = curr->right;
+        }
+
+        // point column head to new head
+        Node* newhead = headOfCol_.at(r);
+        for (int i=0; i < count; i++) {
+            newhead = newhead->left;
+        } 
+        headOfCol_.at(r) = newhead;
     }
 
     /**
