@@ -96,7 +96,6 @@
      * Rotate headOfRow_ if necessary.
      */
     void Grid::rotateC(int c, int count) {
-        c = c % numCols();
 
         //if it's first column fix all the head pointers
         if (c == 0) {
@@ -123,7 +122,7 @@
             // for the left pointers
             currleft = curr->left;
             for (int i=0; i < count; i++) {
-                currright = currright->down;
+                currleft = currleft->down;
             }
             curr->left = currleft;
             currleft->right = curr;
@@ -147,21 +146,18 @@
      * Sets bwidth_, bheight_ to zero.
      * After clear() the grid represents an empty grid.
      */
-    void Grid::clear() { /*your code here*/
-    //
-    //    std::function void deleteNext = [](Node current) {
-    //        if (current->*down != NULL) {
-    //            deleteNext(current->*down);
-    //        }
-    //        delete current;
-    //    }
-    //
-    //    for (int i = 0; i < numCols(); i++) {
-    //        Node temp = headOfCol_[i];
-    //        deleteNext(temp);
-    //    }
-    }
+    
+    void Grid::clear() { 
 
+    for (Node *n : headOfRow_)
+        delete n;
+    for (Node *n : headOfCol_)
+        delete n;
+    headOfRow_.clear();
+    headOfCol_.clear();
+    bwidth_ = 0;
+    bheight_ = 0;
+}
 
 
     /**

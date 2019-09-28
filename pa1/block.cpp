@@ -5,7 +5,7 @@
  * Returns the width of the block.
  */
 int Block::width() const{/*your code here*/
-    std::cout << data[0].size() << "\n";
+    // std::cout << data[0].size() << "\n";
     return data[0].size();
 }
 
@@ -13,7 +13,7 @@ int Block::width() const{/*your code here*/
  * Returns the height of the block.
  */
 int Block::height() const{/*your code here*/
-    std::cout << data.size() << "\n";
+    // std::cout << data.size() << "\n";
     return data.size();
 }
 
@@ -30,8 +30,8 @@ Block::Block() {/* nothing */}
 Block::Block(PNG & im, int x, int y, int width, int height) {/*your code here*/
     HSLAPixel def;
     data = std::vector<vector<HSLAPixel>>(height, vector<HSLAPixel>(width,def));
-    std::cout << data[0].size() << "width" << "\n";
-    std::cout << data.size() << "height" << "\n";
+    // std::cout << data[0].size() << "width" << "\n";
+    // std::cout << data.size() << "height" << "\n";
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++ ) {
             data[i][j].h = im.getPixel(x+j,y+i)->h;
@@ -61,13 +61,13 @@ void Block::render(PNG & im, int x, int y) const {/*your code here*/
  * which removes the color, leaving grey.
  */
 void Block::greyscale() {/*your code here*/
-    std::cout << "greyscale" << "\n";
+    // std::cout << "greyscale" << "\n";
 
     for (int i = 0; i < height(); i++) {
         for (int j = 0; j < width(); j++ ) {
-            std::cout << "original" << data[i][j].s << "\n";
+            // std::cout << "original" << data[i][j].s << "\n";
             data[i][j].s = 0;
-            std::cout << "new" << data[i][j].s << "\n";
+            // std::cout << "new" << data[i][j].s << "\n";
         }
     }
 }

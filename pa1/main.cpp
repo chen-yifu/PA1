@@ -33,6 +33,12 @@ int main() {
   result = g1.render();
   result.writeToFile("images/out-main-rotateR.png");
 
+  //grid rotateR1
+  Grid gg(pngin,4,5);	// image, number of columns, rows.
+  gg.rotateR(0, 2);	
+  result = gg.render();
+  result.writeToFile("images/out-main-rotateR1.png");
+
   expected.readFromFile("images/given-rotateR.png");
   if (expected == result) cout<< "gridtest-rotateR PASSED" << endl;
   else cout << "gridtest-rotateR FAILED" << endl;
