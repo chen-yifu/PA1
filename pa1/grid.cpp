@@ -47,6 +47,8 @@
      */
     void Grid::rotateR(int r, int count) { 
         r = r % numRows();
+
+        //if it's first row fix all the head pointers
         if (r == 0) {
             for (Node* x: headOfCol_) {
                 Node* correct = x;
@@ -93,7 +95,48 @@
      * in grid g should be DEABC after the call g.rotateC(c, 2).
      * Rotate headOfRow_ if necessary.
      */
-    void Grid::rotateC(int c, int count) { /* your code here */
+    void Grid::rotateC(int c, int count) {
+        c = c % numCols();
+
+        //if it's first column fix all the head pointers
+        if (c == 0) {
+            for (Node* x: headOfRow_) {
+                Node* correct = x;
+                for (int i=0; i < count; i++) {
+                    correct = correct->up;
+                } 
+                x = correct;       
+            }
+        }
+        Node* curr = headOfRow_.at(c);
+        Node* currright;
+        Node* currleft;
+        for (int i=0; i < numRows(); i++) {
+            // for the right pointers
+            currright = curr->right;
+            for (int i=0; i < count; i++) {
+                currright = currright->down;
+            }
+            curr->right = currright;
+            currright->left = curr;
+
+            // for the left pointers
+            currleft = curr->left;
+            for (int i=0; i < count; i++) {
+                currright = currright->down;
+            }
+            curr->left = currleft;
+            currleft->right = curr;
+
+            curr = curr->down;
+        }
+
+        // point column head to new head
+        Node* newhead = headOfRow_.at(c);
+        for (int i=0; i < count; i++) {
+            newhead = newhead->up;
+        } 
+        headOfRow_.at(c) = newhead;
 
     }
 
