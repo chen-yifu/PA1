@@ -58,7 +58,7 @@
                 x = correct;       
             }
         }
-        Node* curr = headOfCol_.at(r);
+        Node* curr = headOfRow_.at(r);
         Node* currdown;
         Node* currup;
         for (int i=0; i < numCols(); i++) {
@@ -82,11 +82,11 @@
         }
 
         // point column head to new head
-        Node* newhead = headOfCol_.at(r);
+        Node* newhead = headOfRow_.at(r);
         for (int i=0; i < count; i++) {
             newhead = newhead->left;
         } 
-        headOfCol_.at(r) = newhead;
+        headOfRow_.at(r) = newhead;
     }
 
     /**
@@ -108,7 +108,7 @@
                 x = correct;       
             }
         }
-        Node* curr = headOfRow_.at(c);
+        Node* curr = headOfCol_.at(c);
         Node* currright;
         Node* currleft;
         for (int i=0; i < numRows(); i++) {
@@ -132,11 +132,11 @@
         }
 
         // point column head to new head
-        Node* newhead = headOfRow_.at(c);
+        Node* newhead = headOfCol_.at(c);
         for (int i=0; i < count; i++) {
             newhead = newhead->up;
         } 
-        headOfRow_.at(c) = newhead;
+        headOfCol_.at(c) = newhead;
 
     }
 
@@ -172,25 +172,4 @@
      * constructor and the assignment operator for Grids.
      */
     void Grid::copy(Grid const& other) { /*your code here*/
-
-    }
-    Grid * newGrid = new Grid(*other->render(),other->bheight_, other->bwidth_)
-
-    Node * getNthNode(string direction, int steps, const Node * current) {
-            if (steps == 0) {
-                return current;
-            }
-            if (direction == "up") {
-                return getNthNode(direction, steps - 1, current->up);
-            }
-            if (direction == "down") {
-                return getNthNode(direction, steps - 1, current->down);
-            }
-            if (direction == "left") {
-                return getNthNode(direction, steps - 1, current->left);
-            }
-            if (direction == "right") {
-                return getNthNode(direction, steps - 1, current->right);
-            }
-
     }
