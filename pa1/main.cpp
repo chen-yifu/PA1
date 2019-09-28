@@ -53,6 +53,14 @@ int main() {
   if (expected == result) cout<< "gridtest-rotateC PASSED" << endl;
   else cout << "gridtest-rotateC FAILED" << endl;
 
+  //grid combined
+   pngin.readFromFile("images/123456789.png");
+  Grid g11(pngin,3,3);
+  g11.rotateR(0, 2);
+  g11.rotateC(2, 1);
+  result = g11.render();
+  result.writeToFile("images/out-test-puzzle.png");
+
   //grid copy
   Grid g3(pngin,4,5);
   Grid g3g3(g3);

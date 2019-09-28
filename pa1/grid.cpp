@@ -15,7 +15,7 @@
             Node* nPlusOne = n->down;
             n->down = NULL;
             nPlusOne->up = NULL;
-            while (nPlusOne -> down != NULL) {
+            for (int i=0; i < numRows()-1; i++) {
                 n = nPlusOne;
                 nPlusOne = n->down;
                 n->down = NULL;
@@ -29,7 +29,7 @@
             delete n;
             n->right = NULL;
             nPlusOne->left = NULL;
-            while (nPlusOne -> right != NULL) {
+            for (int i=0; i < numCols()-1; i++) {
                 n = nPlusOne;
                 nPlusOne = n->right;
                 delete n;
@@ -146,18 +146,21 @@
      * Sets bwidth_, bheight_ to zero.
      * After clear() the grid represents an empty grid.
      */
-    
-    void Grid::clear() { 
+    void Grid::clear() { /*your code here*/
+    //
+    //    std::function void deleteNext = [](Node current) {
+    //        if (current->*down != NULL) {
+    //            deleteNext(current->*down);
+    //        }
+    //        delete current;
+    //    }
+    //
+    //    for (int i = 0; i < numCols(); i++) {
+    //        Node temp = headOfCol_[i];
+    //        deleteNext(temp);
+    //    }
+    }
 
-    for (Node *n : headOfRow_)
-        delete n;
-    for (Node *n : headOfCol_)
-        delete n;
-    headOfRow_.clear();
-    headOfCol_.clear();
-    bwidth_ = 0;
-    bheight_ = 0;
-}
 
 
     /**
