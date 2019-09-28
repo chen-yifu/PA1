@@ -15,7 +15,7 @@
             Node* nPlusOne = n->down;
             n->down = NULL;
             nPlusOne->up = NULL;
-            while (nPlusOne -> down != nullptr) {
+            while (nPlusOne -> down != NULL) {
                 n = nPlusOne;
                 nPlusOne = n->down;
                 n->down = NULL;
@@ -29,7 +29,7 @@
             delete n;
             n->right = NULL;
             nPlusOne->left = NULL;
-            while (nPlusOne -> right != nullptr) {
+            while (nPlusOne -> right != NULL) {
                 n = nPlusOne;
                 nPlusOne = n->right;
                 delete n;
