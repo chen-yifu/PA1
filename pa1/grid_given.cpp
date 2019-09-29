@@ -27,14 +27,6 @@ Grid::Grid(PNG & im, int nCols, int nRows) {
   bwidth_ = im.width() / nCols;		// width of all Node blocks
   bheight_ = im.height() / nRows;	// height of all Node blocks
 
-  if( bwidth_ == 0 || bheight_ == 0 ) {
-    cerr << "ERROR: Cannot divide image of size " <<
-      im.width() << "x" << im.height() <<
-      " into " << nCols << " columns and " << nRows << " rows." << endl;
-    bwidth_ = 0;
-    bheight_ = 0;
-    return;
-  }
 
   // Set up a temporary two-dimensional vector of ptrs to Nodes containing
   // the correct sub-blocks of the image.
